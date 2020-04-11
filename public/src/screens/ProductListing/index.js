@@ -3,6 +3,7 @@ import "./style.scss";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
 
+import messageBoxActions from "../../redux/messageBox/action";
 import api from "../../config/api";
 import Header from "../../components/Header";
 import Spinner from "../../components/Spinner";
@@ -60,6 +61,7 @@ class ProductListing extends Component {
       this.setState({ data: response.data });
     } catch (e) {
       console.log("e =>", e);
+      this.props.openMessageBox({ type: "error", message: e.message });
     }
 
     this.setState({ isLoading: false });
@@ -76,11 +78,11 @@ class ProductListing extends Component {
 
     return (
       <div id="container">
-        <Header />
+        <Header search={false} />
         <Container>
           <div className="my-3 mx-4">
             <div id="product-listing">
-              <div className="filter">
+              <div className="filter pt-5">
                 <Filterbox defaultQuery={query} onSubmit={this.handleSubmit} />
               </div>
               <div className="listing">
@@ -116,7 +118,9 @@ class ProductListing extends Component {
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  openMessageBox: messageBoxActions.openMessageBox
+};
 
 export default connect(
   mapStateToProps,

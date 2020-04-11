@@ -100,7 +100,7 @@ const findProduct = async (req, res) => {
     }
 
     const productQuery = Product.find(queryBuilder(query))
-      .sort({ createdAt: 1 })
+      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
       .populate("category")

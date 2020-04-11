@@ -18,11 +18,20 @@ const storage = multer.diskStorage({
 });
 
 router.get("/", isAuthenticated, userController.getUser);
+router.get("/:id", userController.getUserById);
 router.post(
   "/register",
   multer({ storage }).single("image"),
   userController.register
 );
 router.post("/login", userController.login);
+router.post("/changepassword", isAuthenticated, userController.changePassword);
+router.post(
+  "/update",
+  isAuthenticated,
+  multer({ storage }).single("image"),
+  userController.updateUser
+);
+router.post("/charge", isAuthenticated, userController.charge);
 
 module.exports = router;

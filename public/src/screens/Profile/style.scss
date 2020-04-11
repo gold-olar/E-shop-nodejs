@@ -1,0 +1,18 @@
+@import "../../variables.scss";
+
+@media (max-width: $mediumBreakpoint) {
+  #profile > .row > div:first-child > .profile-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: $smallBreakpoint) {
+  #profile > .row > div:first-child > .profile-wrapper {
+    margin: 0 auto;
+  }
+
+  .profile-info {
+    margin-top: $smallMargin;
+  }
+}
